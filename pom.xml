@@ -4,12 +4,10 @@
 
   <groupId>com.tmf</groupId>
   <artifactId>pruebas</artifactId>
-  <version>0.0.1-SNAPSHOT</version>
+  <version>0.0.0</version>
   <packaging>jar</packaging>
 
   <name>pruebas</name>
-  <url>http://maven.apache.org</url>
-
   <properties>
 		<java.version>1.8</java.version>
   </properties>
