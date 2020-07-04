@@ -20,8 +20,8 @@ public class App {
 	public static void main(String[] args) throws Exception {
 		CloseableHttpClient httpClient = HttpClientBuilder.create().build();
 
-		String json ="{\"name\":\"xe60693\",\"products\":[{\"name\": \"mueble\",\"precio\": \"21311\",description: \" \"},"
-				+ "{\"name\": \"casa\",\"precio\": \"21311\",description: \"DES\" },{\"name\": \"pedro\",\"precio\": \"21311\", description: \"DES\"}]}"; 
+		String json ="{\"name\":\"xe60693\",\"products\":[{\"name\": \"mueble\",\"precio\": \"21311\",\"description\": \" des\"},"
+				+ "{\"name\": \"casa\",\"precio\": \"21311\",\"description\": \"DES\" },{\"name\": \"pedro\",\"precio\": \"21311\", \"description\": \"DES\"}]}"; 
 
 		try {
 			HttpPost requestPost = new HttpPost("http://localhost:90/client");
