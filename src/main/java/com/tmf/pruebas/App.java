@@ -30,7 +30,7 @@ public class App {
 			requestPost.setEntity(params);
 			httpClient.execute(requestPost);
 
-			HttpGet requestGet = new HttpGet("http://localhost:90/client");
+			HttpGet requestGet = new HttpGet("http://localhost:90/client/xe60693");
 			CloseableHttpResponse response =  httpClient.execute(requestGet); 
 	        StatusLine statusLine = response.getStatusLine();
 	        System.out.println(statusLine.getStatusCode() + " " + statusLine.getReasonPhrase());
