@@ -26,7 +26,7 @@ public class App {
 
 		Client client = new Client(); 
 		client.setName("xe60693");
-		List<Product> list = new ArrayList<>();
+		List<Product> list = new ArrayList<Product>();
 		Product product = new Product(); 
 		product.setName("name");
 		product.setDescription("name");
