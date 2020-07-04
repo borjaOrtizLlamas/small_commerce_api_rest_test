@@ -24,13 +24,13 @@ public class App {
 				+ "{\"name\": \"casa\",\"precio\": \"21311\"},{\"name\": \"pedro\",\"precio\": \"21311\"}]}"; 
 		
 		try {
-			HttpPost requestPost = new HttpPost("springboot:8080/client");
+			HttpPost requestPost = new HttpPost("http://localhost:90/client");
 			StringEntity params = new StringEntity(json);
 			requestPost.addHeader("content-type", "application/json");
 			requestPost.setEntity(params);
 			httpClient.execute(requestPost);
 
-			HttpGet requestGet = new HttpGet("springboot:8080/client");
+			HttpGet requestGet = new HttpGet("http://localhost:90/client");
 			CloseableHttpResponse response =  httpClient.execute(requestGet); 
 	        StatusLine statusLine = response.getStatusLine();
 	        System.out.println(statusLine.getStatusCode() + " " + statusLine.getReasonPhrase());
