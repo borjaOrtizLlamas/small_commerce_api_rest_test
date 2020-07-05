@@ -15,6 +15,9 @@ import org.apache.http.impl.client.HttpClientBuilder;
 import org.apache.http.util.EntityUtils;
 import org.json.JSONObject;
 
+import com.tfm.dto.Client;
+import com.tfm.dto.Product;
+
 /**
  * Hello world!
  *
@@ -37,13 +40,13 @@ public class App {
 		
 		JSONObject jsonObject = new JSONObject(client); 
 		try {
-			HttpPost requestPost = new HttpPost("http://ec2-34-254-104-94.eu-west-1.compute.amazonaws.com:90/client");
+			HttpPost requestPost = new HttpPost("http://localhost:90/client");
 			StringEntity params = new StringEntity(jsonObject.toString());
 			requestPost.addHeader("content-type", "application/json");
 			requestPost.setEntity(params);
 			httpClient.execute(requestPost);
 
-			HttpGet requestGet = new HttpGet("http://ec2-34-254-104-94.eu-west-1.compute.amazonaws.com:90/client/"+client.getName());
+			HttpGet requestGet = new HttpGet("http://localhost:90/client/"+client.getName());
 			CloseableHttpResponse response =  httpClient.execute(requestGet); 
 	        StatusLine statusLine = response.getStatusLine();
 	        System.out.println(statusLine.getStatusCode() + " " + statusLine.getReasonPhrase());
