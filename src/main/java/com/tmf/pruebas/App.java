@@ -33,7 +33,7 @@ public class App {
 		Product product = new Product(); 
 		product.setName("name");
 		product.setDescription("name");
-		product.setPrecio("2.0");
+		product.setPrice("2.0");
 		list.add(product); 
 		client.setProducts(list);
 		
