@@ -16,11 +16,6 @@
 
 	<dependencies>
 		<dependency>
-			<groupId>com.tmf</groupId>
-			<artifactId>dto</artifactId>
-			<version>0.0.1-SNAPSHOT</version>
-		</dependency>
-		<dependency>
 			<groupId>org.apache.httpcomponents</groupId>
 			<artifactId>httpclient</artifactId>
 			<version>4.5.7</version>
@@ -37,12 +32,7 @@
 			<version>20190722</version>
 		</dependency>
 	</dependencies>
-
-
-
 	<build>
 		<finalName>${project.artifactId}</finalName>
 	</build>
-
-
 </project>
