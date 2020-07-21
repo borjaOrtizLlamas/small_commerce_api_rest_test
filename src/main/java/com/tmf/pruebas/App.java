@@ -81,17 +81,20 @@ public class App {
 			requestPost.setEntity(params2);
 			httpClient.execute(requestPost2); 
 	        System.out.println("despues llamada de productos");
+			
+	        
+	        CloseableHttpClient httpClient2 = HttpClientBuilder.create().build();
 
-			requestGet = new HttpGet("http://localhost:90/client/"+client.getName());
-			response =  httpClient.execute(requestGet); 
-	        statusLine = response.getStatusLine();
-	        System.out.println(statusLine.getStatusCode() + " " + statusLine.getReasonPhrase());
-	        responseBody = EntityUtils.toString(response.getEntity(), StandardCharsets.UTF_8);
-	        System.out.println("Response body: " + responseBody);
-	        jsonObjectString = new JSONObject(responseBody);
+			HttpGet requestGet2 = new HttpGet("http://localhost:90/client/"+client.getName());
+			CloseableHttpResponse response2 =  httpClient2.execute(requestGet2); 
+	        StatusLine statusLine2 = response2.getStatusLine();
+	        System.out.println(statusLine2.getStatusCode() + " " + statusLine2.getReasonPhrase());
+	        String responseBody2 = EntityUtils.toString(response2.getEntity(), StandardCharsets.UTF_8);
+	        System.out.println("Response body: " + responseBody2);
+	        JSONObject jsonObjectString2 = new JSONObject(responseBody2);
 	        
 	        //viendo si la respuesta es igual
-	        if(!prueba.similar(jsonObjectString)) {
+	        if(!prueba.similar(jsonObjectString2)) {
 	        	throw new Exception("Response is not the same than the post, the adding clients have failled"); 
 	        }; 
 	        
