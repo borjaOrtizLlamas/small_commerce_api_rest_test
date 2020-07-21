@@ -92,7 +92,7 @@ public class App {
 	        String responseBody2 = EntityUtils.toString(response2.getEntity(), StandardCharsets.UTF_8);
 	        System.out.println("Response body: " + responseBody2);
 	        JSONObject jsonObjectString2 = new JSONObject(responseBody2);
-	        
+	        System.out.println("Response body  must to be----> " + prueba);
 	        //viendo si la respuesta es igual
 	        if(!prueba.similar(jsonObjectString2)) {
 	        	throw new Exception("Response is not the same than the post, the adding clients have failled"); 
