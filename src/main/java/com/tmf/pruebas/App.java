@@ -61,7 +61,7 @@ public class App {
 	        if(!jsonObject.similar(jsonObjectString)) {
 	        	throw new Exception("Response is not the same than the post, create client have errors "); 
 	        }; 
-	        
+	        System.out.println("Anadiendo producto");
 	        //añadiendo procto
 			List<Product> list2 = new ArrayList<Product>();
 			Product product2 = new Product(); 
@@ -74,13 +74,15 @@ public class App {
 			client.getProducts().addAll(list2); 
 			JSONObject prueba = new JSONObject(client); 
 
-			
+	        System.out.println("antes de llamada - respuesta: " +list2 );
 			HttpPost requestPost2 = new HttpPost("http://localhost:90/client/"+client.getName());
 			StringEntity params2 = new StringEntity(productsJson.toString());
 			requestPost.addHeader("content-type", "application/json");
 			requestPost.setEntity(params2);
 			httpClient.execute(requestPost2); 
+	        System.out.println("despues llamada de productos");
 
+	        System.out.println("segunda llamada get");
 			CloseableHttpResponse response1 =  httpClient.execute(requestGet); 
 	        StatusLine statusLine2 = response1.getStatusLine();
 	        System.out.println(statusLine2.getStatusCode() + " " + statusLine2.getReasonPhrase());
