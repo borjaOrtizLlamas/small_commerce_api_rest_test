@@ -58,7 +58,7 @@ public class App {
 	        
 	        //viendo si la respuesta es igual
 	        if(!jsonObject.similar(jsonObjectString)) {
-	        	throw new Exception("Response is not the same than the post"); 
+	        	throw new Exception("Response is not the same than the post, create client have errors "); 
 	        }; 
 	        
 	        
@@ -70,14 +70,30 @@ public class App {
 			product2.setPrice(2.0);
 			list2.add(product2); 
 			JSONObject productsJson = new JSONObject(list2); 
+			
+			client.getProducts().addAll(list2); 
+			JSONObject prueba = new JSONObject(client); 
 
+			
 			HttpPost requestPost2 = new HttpPost("http://localhost:90/client/"+client.getName());
 			StringEntity params2 = new StringEntity(productsJson.toString());
 			requestPost.addHeader("content-type", "application/json");
 			requestPost.setEntity(params2);
 			httpClient.execute(requestPost2); 
 
+			CloseableHttpResponse response1 =  httpClient.execute(requestGet); 
+	        StatusLine statusLine2 = response1.getStatusLine();
+	        System.out.println(statusLine2.getStatusCode() + " " + statusLine2.getReasonPhrase());
+	        String responseBody2 = EntityUtils.toString(response1.getEntity(), StandardCharsets.UTF_8);
+	        System.out.println("Response body: " + responseBody2);
+	        JSONObject jsonObjectString2 = new JSONObject(responseBody2);
 	        
+	        //viendo si la respuesta es igual
+	        if(!prueba.similar(jsonObjectString2)) {
+	        	throw new Exception("Response is not the same than the post, the adding clients have failled"); 
+	        }; 
+	        
+
 	        
 		} catch (Exception ex) {
 			throw ex;
