@@ -82,21 +82,16 @@ public class App {
 			httpClient.execute(requestPost2); 
 	        System.out.println("despues llamada de productos");
 
-	        System.out.println("segunda llamada get");
-			HttpGet requestGet2 = new HttpGet("http://localhost:90/client/"+client.getName());
-	        System.out.println("segunda llamada get1");
-
-			CloseableHttpResponse response1 =  httpClient.execute(requestGet2);
-	        System.out.println("segunda llamada get 2");
-
-	        StatusLine statusLine2 = response1.getStatusLine();
-	        System.out.println(statusLine2.getStatusCode() + " " + statusLine2.getReasonPhrase());
-	        String responseBody2 = EntityUtils.toString(response1.getEntity(), StandardCharsets.UTF_8);
-	        System.out.println("Response body: " + responseBody2);
-	        JSONObject jsonObjectString2 = new JSONObject(responseBody2);
+			requestGet = new HttpGet("http://localhost:90/client/"+client.getName());
+			response =  httpClient.execute(requestGet); 
+	        statusLine = response.getStatusLine();
+	        System.out.println(statusLine.getStatusCode() + " " + statusLine.getReasonPhrase());
+	        responseBody = EntityUtils.toString(response.getEntity(), StandardCharsets.UTF_8);
+	        System.out.println("Response body: " + responseBody);
+	        jsonObjectString = new JSONObject(responseBody);
 	        
 	        //viendo si la respuesta es igual
-	        if(!prueba.similar(jsonObjectString2)) {
+	        if(!prueba.similar(jsonObjectString)) {
 	        	throw new Exception("Response is not the same than the post, the adding clients have failled"); 
 	        }; 
 	        
