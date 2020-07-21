@@ -83,7 +83,8 @@ public class App {
 	        System.out.println("despues llamada de productos");
 
 	        System.out.println("segunda llamada get");
-			CloseableHttpResponse response1 =  httpClient.execute(requestGet); 
+			HttpGet requestGet2 = new HttpGet("http://localhost:90/client/"+client.getName());
+			CloseableHttpResponse response1 =  httpClient.execute(requestGet2); 
 	        StatusLine statusLine2 = response1.getStatusLine();
 	        System.out.println(statusLine2.getStatusCode() + " " + statusLine2.getReasonPhrase());
 	        String responseBody2 = EntityUtils.toString(response1.getEntity(), StandardCharsets.UTF_8);
