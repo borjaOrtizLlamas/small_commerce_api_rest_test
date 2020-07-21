@@ -6,6 +6,8 @@ import java.util.List;
 
 public class Client implements Serializable{
 	String name; 
+	String phone; 
+	
 	List<Product> products;
 	public String getName() {
 		return name;
@@ -21,7 +23,7 @@ public class Client implements Serializable{
 	}
 	@Override
 	public String toString() {
-		return "{\"name\":\"" + name + "\", \"products\":[" + products + "]}";
+		return "{\"name\":\"" + name + "\", \"phone\": \""+ phone+"\" ,\"products\":[" + products + "]}";
 	}
 
 	

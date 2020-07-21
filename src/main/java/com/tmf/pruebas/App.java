@@ -32,15 +32,16 @@ public class App {
 		client.setName("xe60693");
 		List<Product> list = new ArrayList<Product>();
 		Product product = new Product(); 
-		product.setName("name");
-		product.setDescription("name");
-		product.setPrice("2.0");
+		product.setName("zapatos");
+		product.setDescription("zapatos verdes");
+		product.setPrice(2.0);
 		list.add(product); 
 		client.setProducts(list);
 		
 		
 		JSONObject jsonObject = new JSONObject(client); 
 		try {
+			//post
 			HttpPost requestPost = new HttpPost("http://localhost:90/client");
 			StringEntity params = new StringEntity(jsonObject.toString());
 			requestPost.addHeader("content-type", "application/json");
@@ -54,9 +55,28 @@ public class App {
 	        String responseBody = EntityUtils.toString(response.getEntity(), StandardCharsets.UTF_8);
 	        System.out.println("Response body: " + responseBody);
 	        JSONObject jsonObjectString = new JSONObject(responseBody);
+	        
+	        //viendo si la respuesta es igual
 	        if(!jsonObject.similar(jsonObjectString)) {
 	        	throw new Exception("Response is not the same than the post"); 
 	        }; 
+	        
+	        
+	        //añadiendo procto
+			List<Product> list2 = new ArrayList<Product>();
+			Product product2 = new Product(); 
+			product2.setName("camisa");
+			product2.setDescription("camisa verde");
+			product2.setPrice(2.0);
+			list2.add(product2); 
+			JSONObject productsJson = new JSONObject(list2); 
+
+			HttpPost requestPost2 = new HttpPost("http://localhost:90/client/"+client.getName());
+			StringEntity params2 = new StringEntity(productsJson.toString());
+			requestPost.addHeader("content-type", "application/json");
+			requestPost.setEntity(params2);
+			httpClient.execute(requestPost2); 
+
 	        
 	        
 		} catch (Exception ex) {
