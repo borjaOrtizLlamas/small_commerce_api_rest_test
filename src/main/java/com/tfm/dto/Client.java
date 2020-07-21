@@ -8,6 +8,12 @@ public class Client implements Serializable{
 	String name; 
 	String phone; 
 	
+	public String getPhone() {
+		return phone;
+	}
+	public void setPhone(String phone) {
+		this.phone = phone;
+	}
 	List<Product> products;
 	public String getName() {
 		return name;

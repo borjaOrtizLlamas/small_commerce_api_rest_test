@@ -30,6 +30,7 @@ public class App {
 
 		Client client = new Client(); 
 		client.setName("xe60693");
+		client.setPhone("639717");
 		List<Product> list = new ArrayList<Product>();
 		Product product = new Product(); 
 		product.setName("zapatos");
@@ -60,7 +61,6 @@ public class App {
 	        if(!jsonObject.similar(jsonObjectString)) {
 	        	throw new Exception("Response is not the same than the post, create client have errors "); 
 	        }; 
-	        
 	        
 	        //añadiendo procto
 			List<Product> list2 = new ArrayList<Product>();
