@@ -35,7 +35,7 @@ public class App {
 		Product product = new Product(); 
 		product.setName("zapatos");
 		product.setDescription("zapatos verdes");
-		product.setPrice(2.0);
+		product.setPrice(2.1);
 		list.add(product); 
 		client.setProducts(list);
 		
@@ -67,7 +67,7 @@ public class App {
 			Product product2 = new Product(); 
 			product2.setName("camisa");
 			product2.setDescription("camisa verde");
-			product2.setPrice(2.0);
+			product2.setPrice(2.1);
 			list2.add(product2); 
 			JSONObject productsJson = new JSONObject(list2); 
 			
