@@ -13,6 +13,7 @@ import org.apache.http.entity.StringEntity;
 import org.apache.http.impl.client.CloseableHttpClient;
 import org.apache.http.impl.client.HttpClientBuilder;
 import org.apache.http.util.EntityUtils;
+import org.json.JSONArray;
 import org.json.JSONObject;
 
 import com.tfm.dto.Client;
@@ -43,13 +44,13 @@ public class App {
 		JSONObject jsonObject = new JSONObject(client); 
 		try {
 			//post
-			HttpPost requestPost = new HttpPost("http://localhost:90/client");
+			HttpPost requestPost = new HttpPost("http://ec2-18-201-6-130.eu-west-1.compute.amazonaws.com:90/client");
 			StringEntity params = new StringEntity(jsonObject.toString());
 			requestPost.addHeader("content-type", "application/json");
 			requestPost.setEntity(params);
 			httpClient.execute(requestPost);
 
-			HttpGet requestGet = new HttpGet("http://localhost:90/client/"+client.getName());
+			HttpGet requestGet = new HttpGet("http://ec2-18-201-6-130.eu-west-1.compute.amazonaws.com:90/client/"+client.getName());
 			CloseableHttpResponse response =  httpClient.execute(requestGet); 
 	        StatusLine statusLine = response.getStatusLine();
 	        System.out.println(statusLine.getStatusCode() + " " + statusLine.getReasonPhrase());
@@ -74,34 +75,34 @@ public class App {
 			product2.setDescription("camisa verde");
 			product2.setPrice(2.1);
 			list2.add(product2); 
-			JSONObject productsJson = new JSONObject(list2); 
+			JSONArray productsJson = new JSONArray(list2); 
 			
-			client.getProducts().addAll(list2); 
-			JSONObject prueba = new JSONObject(client); 
+			client.getProducts().addAll(list2);
+			
+			List lista = new ArrayList<>(); 
+			lista.add(client); 
+			JSONArray prueba = new JSONArray(lista); 
 
 	        System.out.println("antes de llamada - respuesta: " +list2 );
-	        System.out.println("http://localhost:90/client/"+client.getName()); 
-			HttpPost requestPost2 = new HttpPost("http://localhost:90/client/"+client.getName());
+	        System.out.println("http://ec2-18-201-6-130.eu-west-1.compute.amazonaws.com:90/client/xe60693"); 
+			HttpPost requestPost2 = new HttpPost("http://ec2-18-201-6-130.eu-west-1.compute.amazonaws.com:90/client/xe60693");
 			StringEntity params2 = new StringEntity(productsJson.toString());
-			requestPost.addHeader("content-type", "application/json");
-			requestPost.setEntity(params2);
-			httpClient2.execute(requestPost2); 
-	        System.out.println("despues llamada de productos");
+			requestPost2.addHeader("content-type", "application/json");
+			requestPost2.setEntity(params2);
+			CloseableHttpResponse responsPost = httpClient2.execute(requestPost2); 
+	        System.out.println("despues llamada de productos" + responsPost);
 
-			HttpGet requestGet2 = new HttpGet("http://localhost:90/client/"+client.getName());
+			HttpGet requestGet2 = new HttpGet("http://ec2-18-201-6-130.eu-west-1.compute.amazonaws.com:90/client");
 			CloseableHttpResponse response2 =  httpClient2.execute(requestGet2); 
 	        StatusLine statusLine2 = response2.getStatusLine();
 	        System.out.println(statusLine2.getStatusCode() + " " + statusLine2.getReasonPhrase());
 	        String responseBody2 = EntityUtils.toString(response2.getEntity(), StandardCharsets.UTF_8);
-	        System.out.println("Response body: " + responseBody2);
-	        JSONObject jsonObjectString2 = new JSONObject(responseBody2);
+	        JSONArray jsonObjectString2 = new JSONArray(responseBody2);
 	        System.out.println("Response body  must to be----> " + prueba);
 	        //viendo si la respuesta es igual
 	        if(!prueba.similar(jsonObjectString2)) {
 	        	throw new Exception("Response is not the same than the post, the adding clients have failled"); 
 	        }; 
-	        
-
 	        
 		} catch (Exception ex) {
 			throw ex;
