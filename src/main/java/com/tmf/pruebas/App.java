@@ -80,14 +80,13 @@ public class App {
 			JSONObject prueba = new JSONObject(client); 
 
 	        System.out.println("antes de llamada - respuesta: " +list2 );
+	        System.out.println("http://localhost:90/client/"+client.getName()); 
 			HttpPost requestPost2 = new HttpPost("http://localhost:90/client/"+client.getName());
 			StringEntity params2 = new StringEntity(productsJson.toString());
 			requestPost.addHeader("content-type", "application/json");
 			requestPost.setEntity(params2);
 			httpClient2.execute(requestPost2); 
 	        System.out.println("despues llamada de productos");
-			
-	        
 
 			HttpGet requestGet2 = new HttpGet("http://localhost:90/client/"+client.getName());
 			CloseableHttpResponse response2 =  httpClient2.execute(requestGet2); 
