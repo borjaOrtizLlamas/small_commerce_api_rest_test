@@ -61,6 +61,11 @@ public class App {
 	        if(!jsonObject.similar(jsonObjectString)) {
 	        	throw new Exception("Response is not the same than the post, create client have errors "); 
 	        }; 
+	        
+	        
+	        
+	        CloseableHttpClient httpClient2 = HttpClientBuilder.create().build();
+
 	        System.out.println("Anadiendo producto");
 	        //añadiendo procto
 			List<Product> list2 = new ArrayList<Product>();
@@ -79,11 +84,10 @@ public class App {
 			StringEntity params2 = new StringEntity(productsJson.toString());
 			requestPost.addHeader("content-type", "application/json");
 			requestPost.setEntity(params2);
-			httpClient.execute(requestPost2); 
+			httpClient2.execute(requestPost2); 
 	        System.out.println("despues llamada de productos");
 			
 	        
-	        CloseableHttpClient httpClient2 = HttpClientBuilder.create().build();
 
 			HttpGet requestGet2 = new HttpGet("http://localhost:90/client/"+client.getName());
 			CloseableHttpResponse response2 =  httpClient2.execute(requestGet2); 
