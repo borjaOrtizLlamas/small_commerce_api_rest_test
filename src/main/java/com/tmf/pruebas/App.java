@@ -44,13 +44,13 @@ public class App {
 		JSONObject jsonObject = new JSONObject(client); 
 		try {
 			//post
-			HttpPost requestPost = new HttpPost("http://ec2-18-201-6-130.eu-west-1.compute.amazonaws.com:90/client");
+			HttpPost requestPost = new HttpPost("http://localhost:90/client");
 			StringEntity params = new StringEntity(jsonObject.toString());
 			requestPost.addHeader("content-type", "application/json");
 			requestPost.setEntity(params);
 			httpClient.execute(requestPost);
 
-			HttpGet requestGet = new HttpGet("http://ec2-18-201-6-130.eu-west-1.compute.amazonaws.com:90/client/"+client.getName());
+			HttpGet requestGet = new HttpGet("http://localhost:90/client/"+client.getName());
 			CloseableHttpResponse response =  httpClient.execute(requestGet); 
 	        StatusLine statusLine = response.getStatusLine();
 	        System.out.println(statusLine.getStatusCode() + " " + statusLine.getReasonPhrase());
@@ -68,7 +68,7 @@ public class App {
 	        CloseableHttpClient httpClient2 = HttpClientBuilder.create().build();
 
 	        System.out.println("Anadiendo producto");
-	        //añadiendo procto
+	        //aï¿½adiendo procto
 			List<Product> list2 = new ArrayList<Product>();
 			Product product2 = new Product(); 
 			product2.setName("camisa");
@@ -84,15 +84,15 @@ public class App {
 			JSONArray prueba = new JSONArray(lista); 
 
 	        System.out.println("antes de llamada - respuesta: " +list2 );
-	        System.out.println("http://ec2-18-201-6-130.eu-west-1.compute.amazonaws.com:90/client/xe60693"); 
-			HttpPost requestPost2 = new HttpPost("http://ec2-18-201-6-130.eu-west-1.compute.amazonaws.com:90/client/xe60693");
+	        System.out.println("http://localhost:90/client/"+client.getName()); 
+			HttpPost requestPost2 = new HttpPost("http://localhost:90/client/"+client.getName());
 			StringEntity params2 = new StringEntity(productsJson.toString());
 			requestPost2.addHeader("content-type", "application/json");
 			requestPost2.setEntity(params2);
 			CloseableHttpResponse responsPost = httpClient2.execute(requestPost2); 
 	        System.out.println("despues llamada de productos" + responsPost);
 
-			HttpGet requestGet2 = new HttpGet("http://ec2-18-201-6-130.eu-west-1.compute.amazonaws.com:90/client");
+			HttpGet requestGet2 = new HttpGet("http://localhost:90/client");
 			CloseableHttpResponse response2 =  httpClient2.execute(requestGet2); 
 	        StatusLine statusLine2 = response2.getStatusLine();
 	        System.out.println(statusLine2.getStatusCode() + " " + statusLine2.getReasonPhrase());
