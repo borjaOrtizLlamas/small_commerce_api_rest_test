@@ -57,18 +57,19 @@ public class App {
 	        String responseBody = EntityUtils.toString(response.getEntity(), StandardCharsets.UTF_8);
 	        System.out.println("Response body: " + responseBody);
 	        JSONObject jsonObjectString = new JSONObject(responseBody);
-	        
+
 	        //viendo si la respuesta es igual
 	        if(!jsonObject.similar(jsonObjectString)) {
+	        	System.out.println("Response body must be:" + jsonObject);
 	        	throw new Exception("Response is not the same than the post, create client have errors "); 
 	        }; 
-	        
-	        
-	        
+
+
+
 	        CloseableHttpClient httpClient2 = HttpClientBuilder.create().build();
 
 	        System.out.println("Anadiendo producto");
-	        //a�adiendo procto
+	        //aiendo procto
 			List<Product> list2 = new ArrayList<Product>();
 			Product product2 = new Product(); 
 			product2.setName("camisa");
