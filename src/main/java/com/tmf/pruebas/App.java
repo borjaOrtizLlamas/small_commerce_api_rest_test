@@ -32,6 +32,8 @@ public class App {
 		Client client = new Client(); 
 		client.setName("xe60693");
 		client.setPhone("639717");
+		client.setSurname("ortiz");
+
 		List<Product> list = new ArrayList<Product>();
 		Product product = new Product(); 
 		product.setName("zapatos");
