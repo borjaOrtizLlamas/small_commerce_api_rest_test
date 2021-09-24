@@ -17,7 +17,6 @@ import org.json.JSONArray;
 import org.json.JSONObject;
 
 import com.tfm.dto.Client;
-import com.tfm.dto.Product;
 
 
 /**
@@ -34,13 +33,6 @@ public class App {
 		client.setPhone("639717");
 		client.setSurname("ortiz");
 
-		List<Product> list = new ArrayList<Product>();
-		Product product = new Product(); 
-		product.setName("zapatos");
-		product.setDescription("zapatos verdes");
-		product.setPrice(2.1);
-		list.add(product); 
-		client.setProducts(list);
 		
 		
 		JSONObject jsonObject = new JSONObject(client); 
@@ -71,27 +63,13 @@ public class App {
 	        CloseableHttpClient httpClient2 = HttpClientBuilder.create().build();
 
 	        System.out.println("Anadiendo producto");
-	        //aiendo procto
-			List<Product> list2 = new ArrayList<Product>();
-			Product product2 = new Product(); 
-			product2.setName("camisa");
-			product2.setDescription("camisa verde");
-			product2.setPrice(2.1);
-			list2.add(product2); 
-			JSONArray productsJson = new JSONArray(list2); 
 			
-			client.getProducts().addAll(list2);
-			
+		
 			List lista = new ArrayList<>(); 
 			lista.add(client); 
 			JSONArray prueba = new JSONArray(lista); 
-
-	        System.out.println("antes de llamada - respuesta: " +list2 );
 	        System.out.println("http://localhost:90/client/"+client.getName()); 
 			HttpPost requestPost2 = new HttpPost("http://localhost:90/client/"+client.getName());
-			StringEntity params2 = new StringEntity(productsJson.toString());
-			requestPost2.addHeader("content-type", "application/json");
-			requestPost2.setEntity(params2);
 			CloseableHttpResponse responsPost = httpClient2.execute(requestPost2); 
 	        System.out.println("despues llamada de productos" + responsPost);
 
